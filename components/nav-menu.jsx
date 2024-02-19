@@ -17,6 +17,8 @@ const backdrop = {
   hidden: { opacity: 0 },
 };
 
+const emphasizedEasing = [0.4, 0, 0.1, 1]
+
 export function Drawer() {
   const navigation = home;
   const pathname = usePathname();
@@ -54,7 +56,11 @@ export function Drawer() {
             <motion.nav
               animate={isOpen ? "open" : "closed"}
               variants={variants}
-              transition={{ type: "spring", stiffness: 20, damping: 20 }}
+              transition={{ 
+  duration: 0.5, 
+  ease: emphasizedEasing, 
+  type: "spring", // Consider removing the spring if it doesn't fit
+ }}
               style={{
                 position: "fixed",
                 top: 0,
