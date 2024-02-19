@@ -42,7 +42,7 @@ export function Drawer() {
               exit="hidden"
               onClick={toggleDrawer}
               style={{
-                position: "fixed",
+                position: "absolute",
                 top: 0,
                 left: 0,
                 right: 0,
