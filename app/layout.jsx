@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css';
 import { Navbar } from '@/components/Navbar';
+import { Slide } from '@/styles/slide';
 
 const roboto = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${roboto.className} bg-black text-white`}>
         <Navbar />
+        <Slide>
         {children}
+        </Slide>
         </body>
     </html>
   );

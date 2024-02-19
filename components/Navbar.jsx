@@ -1,26 +1,46 @@
-'use client'
+"use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Icons } from "./Icons";
+import { navigation } from "@/config/homepage";
 
 export const Navbar = () => {
-  const pathname = usePathname();
+  const [activeTab, setActiveTab] = useState(navigation[0].id);
 
   return (
-    <nav className="px-[70px] py-[30px] text-[14px] ">
-      <div className="flex container gap-[64px] items-center justify-center">
-        <div className="flex gap-[63px] items-center max-w-[1300px]  ">
-          {items.map((item, index) => (
-            <Link
-              key={index}
-              href={item.link}
-              className={`Link ${
-                pathname === item.link
-                  ? "text-black bg-white px-[16px] py-[6px] rounded-[100px] font-semibold"
-                  : ""
-              }`}
-            >
-              {item.name}
+    <nav className="lg:px-[48px] md:px-[40px] px-5 my-[24px] text-[18px]">
+      <div className="lg:flex  md:container lg:container lg:gap-[64px] md:gap-[50px] lg:items-center">
+        <div className=" flex items-center justify-between w-auto">
+          <Icons.menu className={`fill-white lg:hidden md:block block`} />
+          <Link href="/">
+            <Icons.logo />
+          </Link>
+          <Icons.search className="fill-white lg:hidden md:block block" />
+        </div>
+        <div className="gap-[63px] items-center lg:flex md:hidden  hidden justify-center ">
+          {navigation.map((item, index) => (
+            <Link key={index} href={item.link}>
+              <button
+                onClick={() => setActiveTab(item.id)}
+                className={`${
+                  activeTab === item.id ? "" : "hover:text-white/60"
+                } relative rounded-full px-3 py-1.5   text-white outline-sky-400 transition focus-visible:outline-2`}
+                style={{
+                  WebkitTapHighlightColor: "transparent",
+                }}
+              >
+                {activeTab === item.id && (
+                  <motion.span
+                    layoutId="bubble"
+                    className="absolute inset-0 z-10 bg-white mix-blend-difference"
+                    style={{ borderRadius: 9999 }}
+                    transition={{ type: "spring", duration: 0.6 }}
+                  />
+                )}
+                {item.name}
+              </button>
             </Link>
           ))}
         </div>
@@ -28,27 +48,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-const items = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "Search",
-    link: "/Search",
-  },
-  {
-    name: "Movies",
-    link: "/Movies",
-  },
-  {
-    name: "Shows",
-    link: "/Shows",
-  },
-
-  {
-    name: "Library",
-    link: "/Library",
-  },
-];
