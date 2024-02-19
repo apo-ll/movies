@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Icons } from "./Icons";
 import { navigation } from "@/config/homepage";
+import { Drawer } from "./nav-menu";
 
 export const Navbar = () => {
   const [activeTab, setActiveTab] = useState(navigation[0].id);
@@ -13,11 +14,13 @@ export const Navbar = () => {
     <nav className="lg:px-[48px] md:px-[40px] px-5 my-[24px] text-[18px]">
       <div className="lg:flex  md:container lg:container lg:gap-[64px] md:gap-[50px] lg:items-center">
         <div className=" flex items-center justify-between w-auto">
-          <Icons.menu className={`fill-white lg:hidden md:block block`} />
+          <Drawer />
           <Link href="/">
             <Icons.logo />
           </Link>
-          <Icons.search className="fill-white lg:hidden md:block block" />
+          <Link href="/Search" className=" focus:bg-gray-900 p-2 rounded-full">
+          <Icons.search  className="fill-white lg:hidden md:block block" />
+          </Link>
         </div>
         <div className="gap-[63px] items-center lg:flex md:hidden  hidden justify-center ">
           {navigation.map((item, index) => (
