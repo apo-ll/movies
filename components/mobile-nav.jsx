@@ -7,7 +7,7 @@ import { Icons } from "./Icons";
 import { home } from "@/config/homepage";
 import Link from "next/link";
 
-export function Drawer() {
+export function MobileNav({ className }) {
   const container = useRef();
   let hello;
   useGSAP(
@@ -25,9 +25,9 @@ export function Drawer() {
   );
 
   return (
-    <div ref={container} className="">
-      <div className=" p-4 absolute top-0 bottom-0 right-0 left-0 ">
-        <div className="flex flex-row px-4 pt-4 justify-between">
+    <div ref={container} className={className}>
+      <div className="w-full  p-4 ">
+        <div className="flex flex-row px-4 pt-4 items-center justify-between">
           <Icons.logo color="white" />
           <button
             onClick={() => hello.play()}
@@ -42,7 +42,7 @@ export function Drawer() {
 
       {/* Drawer */}
 
-      <div className="box fixed top-0 w-full h-full p-4 bg-white text-black rounded-xl">
+      <div className="box absolute  w-full h-full p-4 bg-white text-black rounded-xl">
         <div className="flex flex-row px-4 pt-4 justify-between">
           <Icons.logo color="black" />
           <button
